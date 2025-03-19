@@ -1,12 +1,14 @@
 import {useState} from 'react'
-import Liste from './components/liste'
+import Liste from './liste'
 export default function Todo() {
     /*Liste de taches a faire*/
     const [taches,Settaches]=useState([])
 
      /*fonction pour mettre a jour la liste des taches*/
     function addT(){
-        Settaches([...taches,tache])
+        if(tache.trim() !== ''){
+          Settaches([...taches,tache])
+        }
         setTache('')
       }
 
@@ -16,9 +18,9 @@ export default function Todo() {
      /*fonction pour mettre a jour les entrées*/
      function setval(e){
        setTache(e.target.value)
-         }function del(e){
-          const valeur = taches.filter(val=>val ==e)
-          Settaches([valeur])
+         }
+         function del(e){
+          Settaches(taches.filter((val)=>val !== e))
         }
 
   return (
